@@ -1,0 +1,57 @@
+name:                my-haskell-lambda
+version:             0.1.0
+github:              "githubuser/my-haskell-lambda"
+license:             BSD3
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2019 Author name here"
+
+description:         Please see the README on GitHub at <https://github.com/githubuser/my-haskell-lambda#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- aws-lambda-haskell-runtime >= 2.0.1
+- aeson
+- amazonka-core
+- beam-core
+- beam-mysql
+- bytestring
+- http-types
+- lens
+- mysql
+- protolude
+- servant-server
+- serverless-haskell
+- strict-concurrency
+- text
+- wai
+- warp
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Lib
+    - ServantSimple
+    - ServantShim
+
+executables:
+  bootstrap:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -O2
+    - -static
+    - -with-rtsopts=-N
+    cc-options: -static
+    ld-options: -static -pthread
+    dependencies:
+    - my-haskell-lambda
+
+default-extensions:
+  - TemplateHaskell
+  - RecordWildCards
+  - OverloadedLists
+  - OverloadedStrings
+  - DeriveGeneric
